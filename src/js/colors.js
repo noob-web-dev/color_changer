@@ -1,6 +1,6 @@
-function getColorList() {
+function getColorList(len = 1) {
   const colors = [];
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < len; i++) {
     const bgr = Math.floor(Math.random() * 256);
     const fr = 256 - bgr;
     const bgg = Math.floor(Math.random() * 256);

@@ -1,18 +1,19 @@
-import {  getColorList } from "./src/js/colors.js";
+import { getColorList } from "./src/js/colors.js";
 
 const appDiv = document.getElementById("app");
 const bodyElement = document.getElementById("body");
+const textNode = document.createTextNode("new color");
 
-const colorsList = getColorList();
+const [color] = getColorList();
 
-colorsList.forEach((color, i) => {
-  const btn = document.createElement("button");
-  btn.classList.add("btn");
+let btn = document.createElement("button");
+btn.classList.add("btn");
+btn.appendChild(textNode);
+btn.setAttribute("style", `background-color: ${color.bgColor};`);
+btn.addEventListener("click", (e) => {
+  bodyElement.setAttribute("style", `background-color: ${color.bgColor};`);
+  const [newColor] = getColorList();
+  color.bgColor = newColor.bgColor;
   btn.setAttribute("style", `background-color: ${color.bgColor};`);
-  btn.addEventListener("click", (e) => {
-    bodyElement.setAttribute("style", `background-color: ${color.bgColor};`);
-  });
-  btn.setAttribute("id", `${i}`);
-  btn.appendChild(document.createTextNode(color.bgColor));
-  appDiv.appendChild(btn);
 });
+appDiv.appendChild(btn);
